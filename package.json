@@ -5,7 +5,11 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel --host 0.0.0.0",
-    "build": "parcel build"
+    "build:parcel": "parcel build ./src/*.html --public-url ./ --no-scope-hoist --no-content-hash",
+    "build": "npm run clean && npm run build:parcel",
+    "clean": "rm -rf dist/*",
+    "predeploy": "npm run build ",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -13,12 +17,14 @@
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.10.3",
     "@parcel/transformer-webmanifest": "^2.10.3",
+    "gh-pages": "^6.1.0",
     "parcel": "^2.10.3",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
   },
   "dependencies": {
     "@barba/core": "^2.9.7",
+    "@parcel/packager-js": "^2.10.3",
     "@studio-freight/lenis": "^1.0.29",
     "gsap": "^3.12.3"
   }
